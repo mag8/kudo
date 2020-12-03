@@ -334,12 +334,11 @@
           uses[i].remove();
         }
         if(typeName == 'troll'){
-          use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-          use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', './TrollFace.svg');
+
           var svgimg = document.createElementNS('http://www.w3.org/2000/svg','image');
           svgimg.setAttributeNS(null,'height','85');
           svgimg.setAttributeNS(null,'width','75');
-          svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', 'TrollFace.svg');
+          svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', 'Trollface.svg');
           svgimg.setAttributeNS(null, 'visibility', 'visible');
 
           image.appendChild(svgimg);

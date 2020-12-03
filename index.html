@@ -103,6 +103,10 @@
         background-image: url(keepler-kudos-bg_3.jpg);
         background-size: cover;
       }
+      .troll {
+          background-image: url(keepler-kudos-bg_4.jpg);
+          background-size: cover;
+        }
       .theme-picker-container {
         top: 1em;
       }
@@ -237,6 +241,15 @@
       .happy .header-image {
         color: #ffcd00;
       }
+      .troll .card-header {
+        background: #4cc1ef;
+      }
+      .troll .header-image-container {
+        background: #febb0a;
+      }
+      .troll .header-image {
+        color: #f12e58;
+      }
       .dummy {
         display: none;
       }
@@ -288,7 +301,8 @@
         happy: {image: 'smile', header: 'Very Happy!'},
         greatjob: {image: 'thumbs-up', header: 'Great Job!'},
         welldone: {image: 'diamond', header: 'Well Done!'},
-        congrats: {image: 'graduation-hat', header: 'Congratulations!'}
+        congrats: {image: 'graduation-hat', header: 'Congratulations!'},
+        troll: {image: 'troll', header: 'Trolled!'}
       };
       var types = Object.keys(typeMap);
       var model = {
@@ -311,13 +325,29 @@
       function updateImage(typeName) {
         var type = typeMap[typeName];
         var image = document.querySelector('.lnr');
+        var images = image.querySelectorAll('image');
+        for (var i = 0; i < images.length; i++) {
+          images[i].remove();
+        }
         var uses = document.querySelectorAll('use');
         for (var i = 0; i < uses.length; i++) {
           uses[i].remove();
         }
-        var use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-        use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', '#lnr-' + type.image);
-        image.appendChild(use);
+        if(typeName == 'troll'){
+          use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
+          use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', './TrollFace.svg');
+          var svgimg = document.createElementNS('http://www.w3.org/2000/svg','image');
+          svgimg.setAttributeNS(null,'height','85');
+          svgimg.setAttributeNS(null,'width','75');
+          svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', 'TrollFace.svg');
+          svgimg.setAttributeNS(null, 'visibility', 'visible');
+
+          image.appendChild(svgimg);
+        }else{
+          use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
+          use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', '#lnr-' + type.image);
+          image.appendChild(use);
+        }
       }
       function updateTitle(typeName) {
         var type = typeMap[typeName];

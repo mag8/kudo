@@ -107,6 +107,11 @@
           background-image: url(keepler-kudos-bg_4.jpg);
           background-size: cover;
         }
+      .xmas {
+          background-image: url(kudo-xmas-3.jpg);
+          background-size: cover;
+          background-position: 0px -50px;
+        }
       .theme-picker-container {
         top: 1em;
       }
@@ -250,14 +255,24 @@
       .troll .header-image {
         color: #f12e58;
       }
+      .xmas .card-header {
+        background: #78be21;
+      }
+      .xmas .header-image-container {
+        background: #febb0a;
+      }
+      .xmas .header-image {
+        color: #f12e58;
+      }
       .dummy {
         display: none;
       }
     </style>
+    <script type="text/javascript" src="./snowstorm.js"></script>
     <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
   </head>
   <body>
-      <p> 
+      <p>
       <aside class="info-box generator theme-picker-container">
         <label for="type">Pick a theme:</label>
         <select id="type">
@@ -294,6 +309,16 @@
       </p>
     </aside>-->
     <script>
+
+
+    snowStorm.flakesMaxActive = 96;    // show more snow on screen at once
+    snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+    snowStorm.snowCharacter = 'k';
+    snowStorm.snowWidth = 2;
+    snowStorm.snowHeight = 2;
+    snowStorm.followMouse = true;
+    snowStorm.freezeOnBlur = true;
+    snowStorm.autoStart = false;
       var typeMap = {
         awesome: {image: 'rocket', header: 'Totally Awesome!'},
         thanks: {image: 'star', header: 'Thank You!'},
@@ -302,7 +327,8 @@
         greatjob: {image: 'thumbs-up', header: 'Great Job!'},
         welldone: {image: 'diamond', header: 'Well Done!'},
         congrats: {image: 'graduation-hat', header: 'Congratulations!'},
-        troll: {image: 'troll', header: 'Trolled!'}
+        troll: {image: 'troll', header: 'Trolled!'},
+        xmas: {image: 'gift', header: 'Merry Christmas!'}
       };
       var types = Object.keys(typeMap);
       var model = {
@@ -332,6 +358,11 @@
         var uses = document.querySelectorAll('use');
         for (var i = 0; i < uses.length; i++) {
           uses[i].remove();
+        }
+        if(typeName == 'xmas'){
+          snowStorm.start();
+        }else{
+          snowStorm.stop();
         }
         if(typeName == 'troll'){
 
